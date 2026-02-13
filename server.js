@@ -24,6 +24,13 @@ app.post('/users', (req, res) => {
   res.send('A new user has been added.');
 });
 
+// Dynamic route with route parameter and query parameter
+app.get('/welcome/:username', (req, res) => {
+  const username = req.params.username;
+  const role = req.query.role;
+  res.send(`Welcome ${username}, your role is ${role}`);
+});
+
 // Wildcard route to handle all undefined routes
 app.use('*', (req, res) => {
   res.status(404).send('<h1>404 - Page Not Found</h1>');
