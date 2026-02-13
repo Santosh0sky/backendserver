@@ -1,11 +1,12 @@
 const express = require('express');
 
 const app = express();
-const PORT = 4000;
+const PORT = 3000;
 const productsRouter = require('./routes/products');
 const categoriesRouter = require('./routes/categories');
 const ordersRouter = require('./routes/orders');
 const userRouter = require('./routes/user');
+const bookRouter = require('./routes/books');
 
 // Middleware to parse JSON
 app.use(express.json());
@@ -27,6 +28,9 @@ app.use('/orders', ordersRouter);
 
 // User endpoints
 app.use('/users', userRouter);
+
+// Books endpoints
+app.use('/books', bookRouter);
 
 // Wildcard route to handle all undefined routes
 app.use('*', (req, res) => {
