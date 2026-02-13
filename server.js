@@ -1,34 +1,33 @@
 const express = require('express');
 
 const app = express();
-const PORT = 3000;
+const PORT = 4000;
 
 // Middleware to parse JSON
 app.use(express.json());
 
-// Orders endpoints
-app.get('/orders', (req, res) => {
-  res.send('Here is the list of all orders.');
+// Logging middleware - logs HTTP method and endpoint accessed
+app.use((req, res, next) => {
+  console.log(`${req.method} request made to ${req.path}`);
+  next();
 });
 
-app.post('/orders', (req, res) => {
-  res.send('A new order has been created.');
+// Products endpoints
+app.get('/products', (req, res) => {
+  res.send('Here is the list of all products.');
 });
 
-// Users endpoints
-app.get('/users', (req, res) => {
-  res.send('Here is the list of all users.');
+app.post('/products', (req, res) => {
+  res.send('A new product has been added.');
 });
 
-app.post('/users', (req, res) => {
-  res.send('A new user has been added.');
+// Categories endpoints
+app.get('/categories', (req, res) => {
+  res.send('Here is the list of all categories.');
 });
 
-// Dynamic route with route parameter and query parameter
-app.get('/welcome/:username', (req, res) => {
-  const username = req.params.username;
-  const role = req.query.role;
-  res.send(`Welcome ${username}, your role is ${role}`);
+app.post('/categories', (req, res) => {
+  res.send('A new category has been created.');
 });
 
 // Wildcard route to handle all undefined routes
